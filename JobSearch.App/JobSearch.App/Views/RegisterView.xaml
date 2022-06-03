@@ -1,13 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="JobSearch.App.Views.LoginView"
-             NavigationPage.HasNavigationBar="False"
-             
-             >
+             x:Class="JobSearch.App.Views.RegisterView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Jobsearch" Style="{StaticResource Title}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Text="&#60;" Padding="0" FontSize="25" Grid.Column="0" Clicked="GoBack"/>
+                <Label Text="Jobsearch" Grid.Column="1" Style="{StaticResource Title}" />
+            </Grid>
+            
             <BoxView Color="#D7CCFF" HeightRequest="1"/>
 
             <Grid VerticalOptions="CenterAndExpand">
@@ -19,17 +24,21 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="0" Grid.ColumnSpan="2">
-                    <Entry Placeholder="E-mail" />
+                    <Entry Placeholder="Nome" />
                 </Frame>
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="1" Grid.ColumnSpan="2">
+                    <Entry Placeholder="E-mail" />
+                </Frame>
+                <Frame Style="{StaticResource EntryFrame}" Grid.Row="2" Grid.ColumnSpan="2">
                     <Entry Placeholder="Senha" />
                 </Frame>
+
+                <Button Text="Salvar"  Grid.Row="3"/>
                 
-                <Button Text="Acessar"  Grid.Row="2"/>
-                <Button Text="Cadastrar" Clicked="GoRegister" Grid.Row="2" Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

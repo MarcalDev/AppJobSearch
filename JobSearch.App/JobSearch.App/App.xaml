@@ -17,12 +17,14 @@
             
             <Color x:Key="Gray">#8FA0AC</Color>
             <Color x:Key="LightGray">#CAD1DC</Color>
-            <Color x:Key="DarkBlue">#4E5C69</Color>          
-            
-            
+            <Color x:Key="DarkBlue">#4E5C69</Color>
+
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
                 <Setter Property="Padding" Value="15"/>
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
+                
             </Style>
+            
 
             <Style TargetType="Label" x:Key="Title">
                 <Setter Property="FontFamily" Value="MontserratBold"/>
@@ -32,7 +34,6 @@
             </Style>
 
             <Style TargetType="Entry">
-                <Setter Property="BackgroundColor" Value="{StaticResource GrayBlue}"/>
                 <Setter Property="TextColor" Value="{StaticResource Black}"/>
                 <Setter Property="PlaceholderColor" Value="{StaticResource DarkGrayBlue}"/>
                 <Setter Property="FontFamily" Value="Montserrat"/>
@@ -49,7 +50,8 @@
             </Style>
 
             <Style TargetType="Frame" x:Key="EntryFrame">
-                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource GrayBlue}"/>
+                <Setter Property="Padding" Value="10, 0"/>
                 <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="HasShadow" Value="False"/>
             </Style>
