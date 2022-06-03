@@ -17,7 +17,7 @@
             
             <Color x:Key="Gray">#8FA0AC</Color>
             <Color x:Key="LightGray">#CAD1DC</Color>
-            <Color x:Key="DarkBlue">#4E5C69</Color>
+            <Color x:Key="DarkGray">#4E5C69</Color>
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
                 <Setter Property="Padding" Value="15"/>
@@ -49,11 +49,39 @@
                 
             </Style>
 
+            <Style TargetType="Label" x:Key="BaseLabel">
+                <Setter Property="FontFamily" Value="Montserrat"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+
             <Style TargetType="Frame" x:Key="EntryFrame">
                 <Setter Property="BackgroundColor" Value="{StaticResource GrayBlue}"/>
                 <Setter Property="Padding" Value="10, 0"/>
                 <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="HasShadow" Value="False"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="CompanyCityStateLabel" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource Gray}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="JobTitleLabel" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource DarkGray}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MoneyLabel" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource Purple}"/>
+
+            </Style>
+            <Style TargetType="Label" x:Key="CurrencyLabel" BasedOn="{StaticResource BaseLabel}">
+                <Setter Property="TextColor" Value="{StaticResource LightGray}"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="IdLabel">
+                <Setter Property="FontSize" Value="8"/>
+                <Setter Property="FontFamily" Value="Montserrat"/>
+                <Setter Property="TextColor" Value="{StaticResource Gray}"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                
             </Style>
         </ResourceDictionary>
     </Application.Resources>
