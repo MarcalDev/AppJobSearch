@@ -45,6 +45,9 @@
             </Label>
 
             <Frame BorderColor="{StaticResource GrayBlue}" Margin="4" Padding="15" HasShadow="True">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoVisualizer"/>
+                </Frame.GestureRecognizers>
                 <Grid RowSpacing="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
