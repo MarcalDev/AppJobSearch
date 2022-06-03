@@ -10,7 +10,7 @@ namespace JobSearch.App
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new Views.LoginView() );
         }
 
         protected override void OnStart()
