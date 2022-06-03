@@ -40,6 +40,13 @@
                 <Setter Property="FontFamily" Value="Montserrat"/>
                 <Setter Property="FontSize" Value="12"/>
             </Style>
+            
+            <Style TargetType="Editor">
+                <Setter Property="TextColor" Value="{StaticResource Black}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource DarkGrayBlue}"/>
+                <Setter Property="FontFamily" Value="Montserrat"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
 
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource Purple}"/>

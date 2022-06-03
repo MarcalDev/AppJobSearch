@@ -11,7 +11,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Jobsearch" Style="{StaticResource Title}" />
-                <Button Text="+Add Job" Grid.Column="1"/>
+                <Button Text="+Add Job" Grid.Column="1" Clicked="GoRegisterJobView"/>
             </Grid>
             <BoxView Color="#D7CCFF" HeightRequest="1"/>
 

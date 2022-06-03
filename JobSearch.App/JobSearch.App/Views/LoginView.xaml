@@ -21,10 +21,10 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Frame Style="{StaticResource EntryFrame}" Grid.Row="0" Grid.ColumnSpan="2">
+                <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2">
                     <Entry Placeholder="E-mail" />
                 </Frame>
-                <Frame Style="{StaticResource EntryFrame}" Grid.Row="1" Grid.ColumnSpan="2">
+                <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2">
                     <Entry Placeholder="Senha" />
                 </Frame>
                 
