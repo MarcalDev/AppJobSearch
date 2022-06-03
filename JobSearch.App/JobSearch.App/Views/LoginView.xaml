@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JobSearch.App.Views.LoginView"
              NavigationPage.HasNavigationBar="False"
+             
              >
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="JobSearch" />
+            <Label Text="Jobsearch" Style="{StaticResource Title}" />
             <BoxView Color="#D7CCFF" HeightRequest="1"/>
 
             <Grid VerticalOptions="CenterAndExpand">
@@ -19,9 +20,14 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+
+                <Frame Style="{StaticResource EntryFrame}" Grid.Row="0" Grid.ColumnSpan="2">
+                    <Entry Placeholder="E-mail" />
+                </Frame>
+                <Frame Style="{StaticResource EntryFrame}" Grid.Row="1" Grid.ColumnSpan="2">
+                    <Entry Placeholder="Senha" />
+                </Frame>
                 
-                <Entry Placeholder="E-mail" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Entry Placeholder="Senha" Grid.Row="1" Grid.ColumnSpan="2"/>
                 <Button Text="Acessar" Grid.Row="2"/>
                 <Button Text="Cadastrar" Grid.Row="2" Grid.Column="1"/>
             </Grid>
