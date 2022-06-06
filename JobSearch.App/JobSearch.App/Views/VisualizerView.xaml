@@ -31,9 +31,9 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Label Text="Digital Ocean" Style="{StaticResource CompanyCityStateLabel }" Grid.Row="0"/>
-                        <Label Text="Back-End Developer" Style="{StaticResource JobTitleLabel}" Grid.Row="1"/>
-                        <Label Text="São Paulo, SP" Style="{StaticResource CompanyCityStateLabel }" Grid.Row="2"/>
+                        <Label Text="Digital Ocean" Style="{StaticResource TextSecondary }" Grid.Row="0"/>
+                        <Label Text="Back-End Developer" Style="{StaticResource TextPrimary}" Grid.Row="1"/>
+                        <Label Text="São Paulo, SP" Style="{StaticResource TextSecondary }" Grid.Row="2"/>
 
 
                         <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
@@ -45,10 +45,10 @@
                             </Label.FormattedText>
                         </Label>
 
-                        <Label Text="CLT" Style="{StaticResource JobTitleLabel}" Grid.Row="4"/>
+                        <Label Text="CLT" Style="{StaticResource TextPrimary}" Grid.Row="4"/>
                         <Label Text="Tags" Grid.Row="5"/>
 
-                        <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource JobTitleLabel}">
+                        <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource TextPrimary}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Pub. "/>
@@ -68,15 +68,15 @@
                         </Label>
                     </Grid>
 
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Interessados enviar e-mail para:"/>
-                    <Label Text="job@digitalocean.com" Style="{StaticResource CompanyCityStateLabel}"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Interessados enviar e-mail para:"/>
+                    <Label Text="job@digitalocean.com" Style="{StaticResource TextSecondary}"/>
                     <BoxView Color="#F3F5F7" HeightRequest="1"/>
-                    <Label Style="{StaticResource MoneyLabel}" Text="Descrição da empresa"/>
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
-                    <Label Style="{StaticResource MoneyLabel}" Text="Descrição do Trabalho"/>
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"/>
-                    <Label Style="{StaticResource MoneyLabel}" Text="Benefícios"/>
-                    <Label Style="{StaticResource JobTitleLabel}" Text="Vale transporte Vale alimentação"/>
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição da empresa"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição do Trabalho"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"/>
+                    <Label Style="{StaticResource TitlePrimary}" Text="Benefícios"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Vale transporte Vale alimentação"/>
                 </StackLayout>
 
             </ScrollView>

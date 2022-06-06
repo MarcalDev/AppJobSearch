@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JobSearch.App.Services;
+using JobSearch.Domain.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +15,12 @@ namespace JobSearch.App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginView : ContentPage
     {
+        private UserService _service;
         public LoginView()
         {
             InitializeComponent();
+
+            _service = new UserService();
         }
 
         private void GoRegister(object sender, EventArgs e)
@@ -22,9 +28,25 @@ namespace JobSearch.App.Views
             Navigation.PushAsync(new RegisterView());
         }
 
-        private void GoStart(object sender, EventArgs e)
+        private async void GoStart(object sender, EventArgs e)
         {
-            App.Current.MainPage = new NavigationPage(new StartView());
+            string email = TxtEmail.Text;
+            string password = TxtPassword.Text;
+
+            // Faz uma require (Método GetUser) com os parametros informados
+            User user = await _service.GetUser(email, password);
+
+            if(user == null)
+            {
+                await DisplayAlert("Erro!", "Nenhum usuários encontrado", "OK");
+            }
+            else
+            {
+                // Serialização de objeto com informações de usuário e retorna através de Json
+                App.Current.Properties.Add("User", JsonConvert.SerializeObject(user));
+                App.Current.MainPage = new NavigationPage(new StartView());
+
+            }
         }
     }
 }
