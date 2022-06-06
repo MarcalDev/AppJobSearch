@@ -1,4 +1,6 @@
-﻿using JobSearch.Domain.Models;
+﻿using JobSearch.App.Models;
+using JobSearch.Domain.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -9,20 +11,31 @@ namespace JobSearch.App.Services
 {
     public  class UserService : Service
     {
-        public async  Task<User> GetUser(string email, string password)
+        public async  Task<ResponseService<User>> GetUser(string email, string password)
         {
            // Registra a response gerada pelo método get feito no enderço indicado
             HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/Users?email={email}&password={password}");
 
-            User user = null;
+            ResponseService<User> responseService = new ResponseService<User>();
+            responseService.IsSucess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
+            
+
             if (response.IsSuccessStatusCode)
             {                
                 //Define 'user' como resultado da request 
-                user = await response.Content.ReadAsAsync<User>();
+                responseService.Data = await response.Content.ReadAsAsync<User>();
+
+            }
+            else
+            {
+                String problemResponse = await response.Content.ReadAsStringAsync();
+                var errors = JsonConvert.DeserializeObject<ResponseService<User>>(problemResponse);
                 
+                responseService.Errors = errors.Errors ;
             }
             //retorna usuário nulo ou resultado da request
-            return user;
+            return responseService;
         }
         public async Task<User> AddUser(User user)
         {
