@@ -21,5 +21,11 @@ namespace JobSearch.App.Views
         {
             Navigation.PopAsync();
         }
+
+        private void Save(object sender, EventArgs e)
+        {
+            DisplayAlert("Vaga salva", "Vaga foi cadastrada!", "OK");
+            Navigation.PopAsync();
+        }
     }
 }
