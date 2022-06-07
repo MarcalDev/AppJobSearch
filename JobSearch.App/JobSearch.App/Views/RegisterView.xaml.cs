@@ -65,7 +65,7 @@ namespace JobSearch.App.Views
                     {
                         foreach(var message in dicKey.Value)
                         {
-                            sb.Append(message);
+                            sb.AppendLine(message);
                         }
                     }
                     TxtMessages.Text = sb.ToString();
