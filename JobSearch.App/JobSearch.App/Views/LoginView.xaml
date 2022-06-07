@@ -22,10 +22,10 @@
                 </Grid.RowDefinitions>
 
                 <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2">
-                    <Entry x:Name="TxtEmail" Placeholder="E-mail" />
+                    <Entry x:Name="TxtEmail" Placeholder="E-mail" ReturnType="Next"/>
                 </Frame>
                 <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Entry IsPassword="True" x:Name="TxtPassword" Placeholder="Senha" />
+                    <Entry IsPassword="True" x:Name="TxtPassword" ReturnType="Done" Placeholder="Senha" />
                 </Frame>
                 
                 <Button Text="Acessar" Clicked="GoStart" Grid.Row="2"/>

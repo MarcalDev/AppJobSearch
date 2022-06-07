@@ -8,7 +8,7 @@ namespace JobSearch.App.Services
     public abstract class Service
     {
         protected HttpClient _client;
-        protected string BaseApiUrl = "http://localhost:46781";
+        protected string BaseApiUrl = "https://xamarinforms2022.azurewebsites.net";
 
 
         public Service()

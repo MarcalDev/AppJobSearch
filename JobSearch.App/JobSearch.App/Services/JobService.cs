@@ -1,4 +1,6 @@
-﻿using JobSearch.Domain.Models;
+﻿using JobSearch.App.Models;
+using JobSearch.Domain.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -39,21 +41,32 @@ namespace JobSearch.App.Services
             //retorna job nulo ou resultado da request
             return job;
         }
-        public async Task<Job> AddJob(Job job)
+        public async Task<ResponseService<Job>> AddJob(Job job)
         {
             // Registra a response gerada pelo método add feito através do enderço indicado e converte para Json
             HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/Jobs", job);
 
+            ResponseService<Job> responseService = new ResponseService<Job>();
+            responseService.IsSucess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
+
+
             if (response.IsSuccessStatusCode)
             {
-                job = await response.Content.ReadAsAsync<Job>();
+                //Define 'user' como resultado da request 
+                responseService.Data = await response.Content.ReadAsAsync<Job>();
+
             }
             else
             {
-                job = null;
+                String problemResponse = await response.Content.ReadAsStringAsync();
+                var errors = JsonConvert.DeserializeObject<ResponseService<Job>>(problemResponse);
+
+                responseService.Errors = errors.Errors;
             }
-            //retorna job nulo ou resultado da request
-            return job;
+            //retorna usuário nulo ou resultado da request
+            return responseService;
+            
         }
     }
 }

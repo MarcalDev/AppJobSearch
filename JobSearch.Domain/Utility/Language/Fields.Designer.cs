@@ -115,6 +115,24 @@ namespace JobSearch.Domain.Utility.Language {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Salario final.
+        /// </summary>
+        public static string FinalSalary {
+            get {
+                return ResourceManager.GetString("FinalSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Salario inicial.
+        /// </summary>
+        public static string InitialSalary {
+            get {
+                return ResourceManager.GetString("InitialSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Interessados enviar e-mail para.
         /// </summary>
         public static string InterestedSendEmailTo {
@@ -144,9 +162,18 @@ namespace JobSearch.Domain.Utility.Language {
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Nome.
         /// </summary>
-        public static string Nome {
+        public static string Name {
             get {
-                return ResourceManager.GetString("Nome", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
@@ -156,24 +183,6 @@ namespace JobSearch.Domain.Utility.Language {
         public static string PublicationDate {
             get {
                 return ResourceManager.GetString("PublicationDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Salario.
-        /// </summary>
-        public static string Salary {
-            get {
-                return ResourceManager.GetString("Salary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha.
-        /// </summary>
-        public static string Senha {
-            get {
-                return ResourceManager.GetString("Senha", resourceCulture);
             }
         }
         

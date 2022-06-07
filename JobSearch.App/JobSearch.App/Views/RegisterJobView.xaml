@@ -22,36 +22,48 @@
             <ScrollView>
                 <StackLayout>
 
+                    <Label x:Name="TxtMessages" LineHeight="1.2" TextColor="OrangeRed"/>
+
+
                     <Frame StyleClass="EntryFrame" Margin="0,10,0,0">
-                        <Entry Placeholder="Empresa" />
+                        <Entry x:Name="TxtCompany" ReturnType="Next" Placeholder="Empresa" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Cargo" />
+                        <Entry x:Name="TxtJobTitle" ReturnType="Next" Placeholder="Cargo" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Cidade/UF" />
+                        <Entry x:Name="TxtCityState" ReturnType="Next" Placeholder="Cidade/UF" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Salário (reais)" />
+                        <Entry x:Name="TxtInitialSalary" ReturnType="Next" Keyboard="Numeric" Placeholder="Salário inicial (reais)" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Regime" />
+                        <Entry x:Name="TxtFinalSalary" ReturnType="Next" Keyboard="Numeric" Placeholder="Salário final (reais)" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Tecnologia/Ferramentas" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Regime" HorizontalOptions="FillAndExpand" Style="{StaticResource LabelEntry}"/>
+                            <RadioButton x:Name="RBCLT" IsChecked="True" Content="CLT"/>
+                            <RadioButton x:Name="RBPJ" Content="PJ"/>
+                        </StackLayout>
+                        
+
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Descrição da Empresa" />
+                        <Entry x:Name="TxtTecnologyTools" ReturnType="Next" Placeholder="Tecnologia/Ferramentas" />
+                    </Frame>
+                    <Frame StyleClass="EntryFrame">
+                        <Entry x:Name="TxtCompanyDescription" ReturnType="Next" Placeholder="Descrição da Empresa" />
                     </Frame>
 
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Descrição do Trabalho" />
+                        <Entry x:Name="TxtJobDescription" ReturnType="Next" Placeholder="Descrição do Trabalho" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Benefícios" />
+                        <Entry x:Name="TxtBenefits" ReturnType="Next" Placeholder="Benefícios" />
                     </Frame>
                     <Frame StyleClass="EntryFrame">
-                        <Entry Placeholder="Interessados enviar e-mail para " />
+                        <Entry x:Name="TxtInterestedSendEmailTo" ReturnType="Done" Placeholder="Interessados enviar e-mail para " />
                     </Frame>
                 </StackLayout>
             </ScrollView>

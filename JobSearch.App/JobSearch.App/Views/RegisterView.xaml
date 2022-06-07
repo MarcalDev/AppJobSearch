@@ -32,13 +32,13 @@
                 <Label x:Name="TxtMessages" Grid.Row="0" Grid.ColumnSpan="2" LineHeight="1.2" TextColor="OrangeRed"/>
 
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Entry x:Name="txtName" Placeholder="Nome" />
+                    <Entry x:Name="txtName" ReturnType="Next" Placeholder="Nome" />
                 </Frame>
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="2" Grid.ColumnSpan="2">
-                    <Entry x:Name="txtEmail" Placeholder="E-mail" />
+                    <Entry x:Name="txtEmail" ReturnType="Next" Placeholder="E-mail" />
                 </Frame>
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="3" Grid.ColumnSpan="2">
-                    <Entry x:Name="txtPassword" Placeholder="Senha" />
+                    <Entry x:Name="txtPassword" ReturnType="Done" Placeholder="Senha" />
                 </Frame>
 
                 <Button Text="Salvar" Clicked="SaveAction" Grid.Row="4"/>
