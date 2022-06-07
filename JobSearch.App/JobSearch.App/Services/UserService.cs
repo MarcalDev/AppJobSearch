@@ -37,21 +37,31 @@ namespace JobSearch.App.Services
             //retorna usuário nulo ou resultado da request
             return responseService;
         }
-        public async Task<User> AddUser(User user)
+        public async Task<ResponseService<User>> AddUser(User user)
         {
             // Registra a response gerada pelo método add feito através do enderço indicado e converte para Json
             HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/Users", user);
 
+            ResponseService<User> responseService = new ResponseService<User>();
+            responseService.IsSucess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode;
+
+
             if (response.IsSuccessStatusCode)
             {
-                user = await response.Content.ReadAsAsync<User>();
+                //Define 'user' como resultado da request 
+                responseService.Data = await response.Content.ReadAsAsync<User>();
+
             }
             else
             {
-                user = null;
+                String problemResponse = await response.Content.ReadAsStringAsync();
+                var errors = JsonConvert.DeserializeObject<ResponseService<User>>(problemResponse);
+
+                responseService.Errors = errors.Errors;
             }
             //retorna usuário nulo ou resultado da request
-            return user;
+            return responseService;
         }
     }
 }

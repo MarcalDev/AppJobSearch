@@ -9,11 +9,12 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Text="&#60;" Padding="0" FontSize="25" Grid.Column="0" Clicked="GoBack"/>
+                <ImageButton Style="{StaticResource BackButton}" Clicked="GoBack"/>
                 <Label Text="Jobsearch" Grid.Column="1" Style="{StaticResource Title}" />
             </Grid>
 
             <BoxView Color="#D7CCFF" HeightRequest="1"/>
+
 
             <Grid VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
@@ -22,22 +23,25 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
+                
+                <Label x:Name="TxtMessages" Grid.Row="0" Grid.ColumnSpan="2" LineHeight="1.2" TextColor="OrangeRed"/>
 
-                <Frame Style="{StaticResource EntryFrame}" Grid.Row="0" Grid.ColumnSpan="2">
-                    <Entry Placeholder="Nome" />
-                </Frame>
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Entry Placeholder="E-mail" />
+                    <Entry x:Name="txtName" Placeholder="Nome" />
                 </Frame>
                 <Frame Style="{StaticResource EntryFrame}" Grid.Row="2" Grid.ColumnSpan="2">
-                    <Entry Placeholder="Senha" />
+                    <Entry x:Name="txtEmail" Placeholder="E-mail" />
+                </Frame>
+                <Frame Style="{StaticResource EntryFrame}" Grid.Row="3" Grid.ColumnSpan="2">
+                    <Entry x:Name="txtPassword" Placeholder="Senha" />
                 </Frame>
 
-                <Button Text="Salvar"  Grid.Row="3"/>
+                <Button Text="Salvar" Clicked="SaveAction" Grid.Row="4"/>
 
             </Grid>
         </StackLayout>

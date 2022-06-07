@@ -37,7 +37,7 @@ namespace JobSearch.App.Views
             string password = TxtPassword.Text;
 
             await Navigation.PushPopupAsync(new Load());
-            await Task.Delay(3000);
+
             // Faz uma require (Método GetUser) com os parametros informados
             ResponseService<User> responseService = await _service.GetUser(email, password);
 
@@ -51,8 +51,16 @@ namespace JobSearch.App.Views
                 App.Current.MainPage = new NavigationPage(new StartView());
             }
             else
-            {                
-                await DisplayAlert("Erro!", "Nenhum usuários encontrado", "OK");
+            {               
+                if(responseService.StatusCode == 404)
+                {
+                    await DisplayAlert("Erro!", "Nenhum usuários encontrado", "OK");
+
+                }
+                else
+                {
+                    await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
+                }
 
             }
             await Navigation.PopAllPopupAsync();
