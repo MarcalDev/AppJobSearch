@@ -53,65 +53,69 @@
                     </Grid>
                 </Frame>
 
-                <Button Text="Pesquisar"  Grid.Row="1" Grid.Column="1"/>
+                <Button Text="Pesquisar" Clicked="Search"  Grid.Row="1" Grid.Column="1"/>
             </Grid>
             
 
-            <CollectionView>
+            <CollectionView x:Name="ListOfJobs" RemainingItemsThreshold="-1" RemainingItemsThresholdReached="InfinitySearch">
                 <CollectionView.EmptyView>
-                    <Label Text="0 resultados." BackgroundColor="Yellow" Style="{StaticResource TextPrimary}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Label Text="0 resultados." Style="{StaticResource TextPrimary}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                 </CollectionView.EmptyView>
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+                        <StackLayout>
+                            
+                            <pancake:PancakeView BackgroundColor="{StaticResource White}" Padding="15" Margin="4" >
+                                <pancake:PancakeView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GoVisualizer" CommandParameter="{Binding .}"/>
+                                </pancake:PancakeView.GestureRecognizers>
+
+
+                                <Grid RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="25"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Company}" Style="{StaticResource TextSecondary }" Grid.ColumnSpan="2"/>
+                                    <Label Text="{Binding JobTitle}" Style="{StaticResource TextPrimary}" Grid.Row="1"/>
+                                    <Label Text="{Binding CityState}" Style="{StaticResource TextSecondary }" Grid.Row="2"/>
+                                    <Label Text="Tags" Grid.Row="3"/>
+
+                                    <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End" HorizontalTextAlignment="End">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding InitialSalary}" Style="{StaticResource MoneyLabel}"/>
+                                                <Span Text=" - " Style="{StaticResource MoneyLabel}"/>
+                                                <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}"/>
+                                                <Span Text="&#x0a;" Style="{StaticResource CurrencyLabel}"/>
+                                                <Span Text=" BRL" Style="{StaticResource CurrencyLabel}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource IdLabel}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="id. "/>
+                                                <Span Text="{Binding Id}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </pancake:PancakeView>
+                        </StackLayout>
                         
                         
-                        <pancake:PancakeView BackgroundColor="{StaticResource White}" BorderColor="{StaticResource GrayBlue}">
-                            <pancake:PancakeView.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="GoVisualizer"/>
-                            </pancake:PancakeView.GestureRecognizers>
-
-
-                            <Grid RowSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Label Text="Digital Ocean" Style="{StaticResource TextSecondary }" Grid.ColumnSpan="2"/>
-                                <Label Text="Back-End Developer" Style="{StaticResource TextPrimary}" Grid.Row="1"/>
-                                <Label Text="São Paulo, SP" Style="{StaticResource TextSecondary }" Grid.Row="2"/>
-                                <Label Text="Tags" Grid.Row="3"/>
-
-                                <Label Grid.Row="1" Grid.Column="1">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="7.0-11k" Style="{StaticResource MoneyLabel}"/>
-                                            <Span Text=" BRL" Style="{StaticResource CurrencyLabel}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource IdLabel}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="id. "/>
-                                            <Span Text="23145"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </Grid>
-                        </pancake:PancakeView>
                     </DataTemplate>
             </CollectionView.ItemTemplate>
-            </CollectionView>
-            
-            
-            
+            </CollectionView>          
+                        
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
