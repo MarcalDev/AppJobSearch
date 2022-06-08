@@ -51,6 +51,7 @@ namespace JobSearch.App.Views
                     FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
                     ContractType = (RBCLT.IsChecked) ? "CLT" : "PJ",
                     TecnologyTools = TxtTecnologyTools.Text,
+                    CompanyDescription = TxtCompanyDescription.Text,
                     JobDescription = TxtJobDescription.Text,
                     Benefits = TxtBenefits.Text,
                     InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,

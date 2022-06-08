@@ -29,7 +29,12 @@ namespace JobSearch.App.Views
 
         private void GoVisualizer(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new VisualizerView());
+            var eventArgs = (TappedEventArgs) e; 
+
+            var page = new VisualizerView();
+            page.BindingContext = eventArgs.Parameter;
+
+            Navigation.PushAsync(page);
         }
 
         private void GoRegisterJobView(object sender, EventArgs e)
@@ -58,6 +63,8 @@ namespace JobSearch.App.Views
         {
             Loading.IsVisible = true;
             Loading.IsRunning = true;
+            NoResult.IsVisible = false;
+            System.Threading.Thread.Sleep(2000);
             // Coleta os dados informados pelo o usuário
             string word = TxtWord.Text;
             string cityState = TxtCityState.Text;
@@ -82,6 +89,14 @@ namespace JobSearch.App.Views
             {
                 await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
 
+            }
+            if (_listOfJobs.Count == 0)
+            {
+                NoResult.IsVisible = true;
+            }
+            else
+            {
+                NoResult.IsVisible = false;
             }
             Loading.IsVisible = false;
             Loading.IsRunning = false;
@@ -125,6 +140,7 @@ namespace JobSearch.App.Views
             {
                 NoResult.IsVisible = false;
             }
+
 
             ListOfJobs.RemainingItemsThreshold = 0;
         }

@@ -37,11 +37,12 @@ namespace JobSearch.App.Views
                 await ValidacaoCampos();
                 TxtMessages.Text = String.Empty;
 
-                string name = txtName.Text;
-                string email = txtEmail.Text;
-                string password = txtPassword.Text;
-
-                User user = new User() { Name = name, Email = email, Password = password };
+                User user = new User() 
+                { 
+                    Name = txtName.Text, 
+                    Email = txtEmail.Text, 
+                    Password = txtPassword.Text,
+                };
 
                 await Navigation.PushPopupAsync(new Load());
 
@@ -51,10 +52,14 @@ namespace JobSearch.App.Views
                 if (responseService.IsSucess)
                 {
                     // Serialização de objeto com informações de usuário e retorna através de Json
-                    App.Current.Properties.Add("User", JsonConvert.SerializeObject(responseService.Data));
+                    //App.Current.Properties.Add("User", JsonConvert.SerializeObject(responseService.Data));
 
-                    // Salvar propriedades alteradas
-                    await App.Current.SavePropertiesAsync();
+                    //// Salvar propriedades alteradas
+                    //await App.Current.SavePropertiesAsync();
+                    
+                    await DisplayAlert("Vaga cadastrada!", "Vaga cadastrada com sucesso", "OK");
+
+
                     App.Current.MainPage = new NavigationPage(new StartView());
                 }
                 else
@@ -77,7 +82,6 @@ namespace JobSearch.App.Views
                     else
                     {
                         await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
-                        
                     }
                     await Navigation.PopAllPopupAsync();
 
@@ -92,7 +96,7 @@ namespace JobSearch.App.Views
         private async Task ValidacaoCampos()
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
-            {   
+            {
                 throw new Exception("Campo 'Nome' não pode estar vazio");
 
                 if (string.IsNullOrWhiteSpace(txtEmail.Text))

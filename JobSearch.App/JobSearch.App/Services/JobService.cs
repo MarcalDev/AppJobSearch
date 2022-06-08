@@ -70,7 +70,7 @@ namespace JobSearch.App.Services
         public async Task<ResponseService<Job>> AddJob(Job job)
         {
             // Registra a response gerada pelo método add feito através do enderço indicado e converte para Json
-            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/Jobs", job);
+            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/jobs", job);
 
             ResponseService<Job> responseService = new ResponseService<Job>();
             responseService.IsSucess = response.IsSuccessStatusCode;
