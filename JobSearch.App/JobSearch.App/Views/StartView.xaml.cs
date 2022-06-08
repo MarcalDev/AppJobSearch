@@ -19,6 +19,7 @@ namespace JobSearch.App.Views
         private JobService _service;
         private ObservableCollection<Job> _listOfJobs;
         private SearchParams _searchParams;
+        private int _listOfJobsFirstRequest;
         public StartView()
         {
             InitializeComponent();
@@ -70,6 +71,7 @@ namespace JobSearch.App.Views
             {
                 // Instancia uma ObservableCollection utilizando os dados da responseService
                 _listOfJobs = new ObservableCollection<Job>( responseService.Data );
+                _listOfJobsFirstRequest = _listOfJobs.Count();
                 // preenche a CollectionView com as instancias
                 ListOfJobs.ItemsSource = _listOfJobs;
                 ListOfJobs.RemainingItemsThreshold = 1;
@@ -83,6 +85,7 @@ namespace JobSearch.App.Views
 
         private async void InfinitySearch(object sender, EventArgs e)
         {
+            ListOfJobs.RemainingItemsThreshold = -1;
             _searchParams.NumberOfPage++;
 
             ResponseService<List<Job>> responseService = await _service.GetJobs(_searchParams.Word, _searchParams.CityState, _searchParams.NumberOfPage);
@@ -95,12 +98,23 @@ namespace JobSearch.App.Views
                 {
                     _listOfJobs.Add(item);
                 }
+                if(_listOfJobsFirstRequest == listOfJobsFromService.Count)
+                {
+                    ListOfJobs.RemainingItemsThreshold = 1;
+                }
+                else
+                {
+                    ListOfJobs.RemainingItemsThreshold = -1;
+                }
+                
             }
             else
             {
                 await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
 
             }
+
+            ListOfJobs.RemainingItemsThreshold = 0;
         }
     }
 }
