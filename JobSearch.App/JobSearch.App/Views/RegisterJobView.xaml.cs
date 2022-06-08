@@ -34,67 +34,86 @@ namespace JobSearch.App.Views
 
         private async void Save(object sender, EventArgs e)
         {
-            TxtMessages.Text = String.Empty;
-
-            User user = JsonConvert.DeserializeObject<User>(App.Current.Properties["User"].ToString());
-
-            Job job = new Job()
+            try
             {
-                //TODO - adicionar validação
-                Company = TxtCompany.Text,
-                JobTitle = TxtJobTitle.Text,
-                CityState = TxtCityState.Text,
-                InitialSalary = TextToDoubleConverter.ToDouble(TxtInitialSalary.Text),
-                FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
-                ContractType = (RBCLT.IsChecked) ? "CLT" : "PJ",
-                TecnologyTools = TxtTecnologyTools.Text,
-                JobDescription = TxtJobDescription.Text,
-                Benefits = TxtBenefits.Text,
-                InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,
-                PublicationDate = DateTime.Now,
-                UserId = user.Id,
+                await ValidacaoCampos();
+                TxtMessages.Text = String.Empty;
 
+                User user = JsonConvert.DeserializeObject<User>(App.Current.Properties["User"].ToString());
 
-            };
-
-
-
-            await Navigation.PushPopupAsync(new Load());
-
-            // Faz uma require (Método AddUser) com os parametros informados
-            ResponseService<Job> responseService = await _service.AddJob(job);
-
-            if (responseService.IsSucess)
-            {
-                await Navigation.PopAllPopupAsync();
-
-                await DisplayAlert("Vaga cadastrada!", "Vaga cadastrada com sucesso", "OK");
-                
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                // Erros de cadastro
-                if (responseService.StatusCode == 400)
+                Job job = new Job()
                 {
-                    StringBuilder sb = new StringBuilder();
+                    //TODO - adicionar validação
+                    Company = TxtCompany.Text,
+                    JobTitle = TxtJobTitle.Text,
+                    CityState = TxtCityState.Text,
+                    InitialSalary = TextToDoubleConverter.ToDouble(TxtInitialSalary.Text),
+                    FinalSalary = TextToDoubleConverter.ToDouble(TxtFinalSalary.Text),
+                    ContractType = (RBCLT.IsChecked) ? "CLT" : "PJ",
+                    TecnologyTools = TxtTecnologyTools.Text,
+                    JobDescription = TxtJobDescription.Text,
+                    Benefits = TxtBenefits.Text,
+                    InterestedSendEmailTo = TxtInterestedSendEmailTo.Text,
+                    PublicationDate = DateTime.Now,
+                    UserId = user.Id,
 
-                    foreach (var dicKey in responseService.Errors)
-                    {
-                        foreach (var message in dicKey.Value)
-                        {
-                            sb.Append(message);
-                        }
-                    }
-                    TxtMessages.Text = sb.ToString();
+
+                };
+
+
+
+                await Navigation.PushPopupAsync(new Load());
+
+                // Faz uma require (Método AddUser) com os parametros informados
+                ResponseService<Job> responseService = await _service.AddJob(job);
+
+                if (responseService.IsSucess)
+                {
+                    await Navigation.PopAllPopupAsync();
+
+                    await DisplayAlert("Vaga cadastrada!", "Vaga cadastrada com sucesso", "OK");
+
+                    await Navigation.PopAsync();
                 }
-                // Erro de servidor
                 else
                 {
-                    await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
-                }
+                    // Erros de cadastro
+                    if (responseService.StatusCode == 400)
+                    {
+                        StringBuilder sb = new StringBuilder();
 
+                        foreach (var dicKey in responseService.Errors)
+                        {
+                            foreach (var message in dicKey.Value)
+                            {
+                                sb.AppendLine(message);
+                            }
+                        }
+                        TxtMessages.Text = sb.ToString();
+                    }
+                    // Erro de servidor
+                    else
+                    {
+                        await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
+                    }
+                    await Navigation.PopAllPopupAsync();
+
+                }
             }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alerta!", ex.Message, "OK");
+            }
+        }
+
+        private async Task ValidacaoCampos()
+        {
+            if (string.IsNullOrWhiteSpace(TxtCompany.Text) || string.IsNullOrWhiteSpace(TxtJobTitle.Text) || string.IsNullOrWhiteSpace(TxtCityState.Text) || string.IsNullOrWhiteSpace(TxtInitialSalary.Text) || 
+                string.IsNullOrWhiteSpace(TxtFinalSalary.Text) || string.IsNullOrWhiteSpace(TxtTecnologyTools.Text) || string.IsNullOrWhiteSpace(TxtJobDescription.Text) || string.IsNullOrWhiteSpace(TxtBenefits.Text) ||
+                string.IsNullOrWhiteSpace(TxtInterestedSendEmailTo.Text))
+                throw new Exception("Campos obrigatórios");
+
+            
         }
 
     }

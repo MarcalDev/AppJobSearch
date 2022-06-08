@@ -32,52 +32,79 @@ namespace JobSearch.App.Views
 
         private async void SaveAction(object sender, EventArgs e)
         {
-            TxtMessages.Text = String.Empty;
-
-            string name = txtName.Text;
-            string email = txtEmail.Text;
-            string password = txtPassword.Text;
-
-            User user = new User() { Name = name, Email = email, Password = password };
-
-            await Navigation.PushPopupAsync(new Load());
-
-            // Faz uma require (Método AddUser) com os parametros informados
-            ResponseService<User> responseService = await _service.AddUser(user);
-
-            if (responseService.IsSucess)
+            try
             {
-                // Serialização de objeto com informações de usuário e retorna através de Json
-                App.Current.Properties.Add("User", JsonConvert.SerializeObject(responseService.Data));
+                await ValidacaoCampos();
+                TxtMessages.Text = String.Empty;
 
-                // Salvar propriedades alteradas
-                await App.Current.SavePropertiesAsync();
-                App.Current.MainPage = new NavigationPage(new StartView());
-            }
-            else
-            {
-                // Erros de cadastro
-                if (responseService.StatusCode == 400)
+                string name = txtName.Text;
+                string email = txtEmail.Text;
+                string password = txtPassword.Text;
+
+                User user = new User() { Name = name, Email = email, Password = password };
+
+                await Navigation.PushPopupAsync(new Load());
+
+                // Faz uma require (Método AddUser) com os parametros informados
+                ResponseService<User> responseService = await _service.AddUser(user);
+
+                if (responseService.IsSucess)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    // Serialização de objeto com informações de usuário e retorna através de Json
+                    App.Current.Properties.Add("User", JsonConvert.SerializeObject(responseService.Data));
 
-                    foreach(var dicKey in responseService.Errors)
-                    {
-                        foreach(var message in dicKey.Value)
-                        {
-                            sb.AppendLine(message);
-                        }
-                    }
-                    TxtMessages.Text = sb.ToString();
+                    // Salvar propriedades alteradas
+                    await App.Current.SavePropertiesAsync();
+                    App.Current.MainPage = new NavigationPage(new StartView());
                 }
-                // Erro de servidor
                 else
                 {
-                    await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
-                }
+                    // Erros de cadastro
+                    if (responseService.StatusCode == 400)
+                    {
+                        StringBuilder sb = new StringBuilder();
 
+                        foreach (var dicKey in responseService.Errors)
+                        {
+                            foreach (var message in dicKey.Value)
+                            {
+                                sb.AppendLine(message);
+                            }
+                        }
+                        TxtMessages.Text = sb.ToString();
+                    }
+                    // Erro de servidor
+                    else
+                    {
+                        await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
+                        
+                    }
+                    await Navigation.PopAllPopupAsync();
+
+                }
             }
-            await Navigation.PopAllPopupAsync();
+            catch (Exception ex)
+            {
+                await DisplayAlert("Alerta!", ex.Message, "OK");
+            }
+
+        }
+        private async Task ValidacaoCampos()
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {   
+                throw new Exception("Campo 'Nome' não pode estar vazio");
+
+                if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    throw new Exception("Campo 'Email' não pode estar vazio");
+
+                    if (string.IsNullOrWhiteSpace(txtPassword.Text))
+                    {
+                        throw new Exception("Campo 'Password' não pode estar vazio");
+                    }
+                }
+            }
         }
     }
 }

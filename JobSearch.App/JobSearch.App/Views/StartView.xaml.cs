@@ -56,6 +56,8 @@ namespace JobSearch.App.Views
 
         private async void Search(object sender, EventArgs e)
         {
+            Loading.IsVisible = true;
+            Loading.IsRunning = true;
             // Coleta os dados informados pelo o usuário
             string word = TxtWord.Text;
             string cityState = TxtCityState.Text;
@@ -81,6 +83,8 @@ namespace JobSearch.App.Views
                 await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
 
             }
+            Loading.IsVisible = false;
+            Loading.IsRunning = false;
         }
 
         private async void InfinitySearch(object sender, EventArgs e)
@@ -112,6 +116,14 @@ namespace JobSearch.App.Views
             {
                 await DisplayAlert("Erro!", "Oops! Ocorreu um erro inesperado! Tente novamente mais tarde.", "OK");
 
+            }
+            if(_listOfJobs.Count == 0)
+            {
+                NoResult.IsVisible = true;
+            }
+            else
+            {
+                NoResult.IsVisible = false;
             }
 
             ListOfJobs.RemainingItemsThreshold = 0;
