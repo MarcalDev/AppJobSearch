@@ -45,13 +45,18 @@ namespace JobSearch.App.Utility.Controls
                     // Separar os caracteres entre vírgula
                     string[] words = Techonologies.Split(',');
 
+                    if(NumberOfWords == 0)
+                    {
+                        NumberOfWords = words.Count();
+                    }
+
                     // Define o limite de tags para cada item, compara com o número de linhas informado no xaml
                     int limit = (words.Count() >= NumberOfWords) ? NumberOfWords : words.Count();
 
                     for (int i =0; i< limit; i++)
                     {
                         // Definindo as propriedades dos componentes pelo cs
-                        var frame = new Frame() { BackgroundColor = Color.FromHex("#F7F8FA"), Padding = new Thickness(3), HasShadow = false};
+                        var frame = new Frame() { Margin = new Thickness(0,3,3,3), BackgroundColor = Color.FromHex("#F7F8FA"), Padding = new Thickness(3), HasShadow = false};
                         var label = new Label() { Text = words[i], Padding = new Thickness(3), FontFamily = "MontserratLight", FontSize = 10, 
                                                     TextColor = Color.FromHex("8D9EAA") };
 

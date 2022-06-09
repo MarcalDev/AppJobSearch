@@ -18,7 +18,7 @@
 
             <ScrollView>
                 <StackLayout>
-                    <Grid RowSpacing="0">
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition  Width="2*"/>
@@ -49,8 +49,7 @@
                         </Label>
 
                         <Label Text="{Binding ContractType}" Style="{StaticResource TextPrimary}" Grid.Row="4"/>
-                        <control:TagView Techonologies="{Binding TecnologyTools}"  NumberOfWords="2" Grid.Row="5"/>
-
+                        
 
                         <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Style="{StaticResource TextPrimary}">
                             <Label.FormattedText>
@@ -72,15 +71,17 @@
                         </Label>
                     </Grid>
 
+                    <control:TagView WidthRequest="100" HorizontalOptions="Start" Techonologies="{Binding TecnologyTools}"/>
+
                     <Label Style="{StaticResource TextPrimary}" Text="Interessados enviar e-mail para:"/>
                     <Label Text="{Binding InterestedSendEmailTo}" Style="{StaticResource TextSecondary}"/>
                     <BoxView Color="#F3F5F7" HeightRequest="1"/>
-                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição da empresa"/>
-                    <Label Style="{StaticResource TextPrimary}" Text="{Binding CompanyDescription}"/>
-                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição do Trabalho"/>
-                    <Label Style="{StaticResource TextPrimary}" Text="{Binding JobDescription}"/>
-                    <Label Style="{StaticResource TitlePrimary}" Text="Benefícios"/>
-                    <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}"/>
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição da empresa" x:Name="HeaderCompanyDescription"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="{Binding CompanyDescription}" x:Name="TextCompanyDescription"/>
+                    <Label Style="{StaticResource TitlePrimary}" Text="Descrição do Trabalho" x:Name="HeaderJobDescription"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="{Binding JobDescription}" x:Name="TextJobDescription"/>
+                    <Label Style="{StaticResource TitlePrimary}" Text="Benefícios" x:Name="HeaderBenefits"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="{Binding Benefits}" x:Name="TextBenefits"/>
                 </StackLayout>
 
             </ScrollView>
