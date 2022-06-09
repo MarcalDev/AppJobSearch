@@ -57,14 +57,7 @@
                 <Button Text="Pesquisar" Clicked="Search"  Grid.Row="1" Grid.Column="1"/>
             </Grid>
 
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="2 resultados em " Style="{StaticResource TextPrimary}"/>
-                        <Span Text="São Paulo, SP" Style="{StaticResource TextSecondary}"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <Label x:Name="TxtResultsCount" Style="{StaticResource TextPrimary}"/>
 
             <Grid>
 

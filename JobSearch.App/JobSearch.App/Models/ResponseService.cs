@@ -13,6 +13,12 @@ namespace JobSearch.App.Models
         public T Data { get; set; }
         //Mensagens definidas para diferentes erros
         public Dictionary<string, List<string>> Errors  { get; set; }
+        public Pagination Pagination { get; internal set; }
+    }
 
+    public class Pagination
+    {
+        public bool IsPagination { get; set; }
+        public int TotalItems { get; set; }
     }
 }

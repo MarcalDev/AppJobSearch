@@ -3,6 +3,7 @@ using JobSearch.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,18 +27,28 @@ namespace JobSearch.App.Services
                 //Define 'job' como resultado da request 
                 responseService.Data = await response.Content.ReadAsAsync<List<Job>>();
 
+                var pagination = new Pagination()
+                {
+                    IsPagination = true,
+                    TotalItems = int.Parse(response.Headers.GetValues("X-Total-Items").FirstOrDefault())
+                };
+                responseService.Pagination = pagination;
+
             }
             else
             {
                 String problemResponse = await response.Content.ReadAsStringAsync();
                 var errors = JsonConvert.DeserializeObject<ResponseService<List<Job>>>(problemResponse);
 
+
+
+
                 responseService.Errors = errors.Errors;
             }
+
             //retorna usuário nulo ou resultado da request
             return responseService;
 
-            
         }
 
         public async Task<ResponseService<Job>> GetJob(int id)
@@ -92,7 +103,10 @@ namespace JobSearch.App.Services
             }
             //retorna usuário nulo ou resultado da request
             return responseService;
-            
+
         }
     }
 }
+
+
+

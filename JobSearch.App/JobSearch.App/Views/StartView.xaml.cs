@@ -61,6 +61,7 @@ namespace JobSearch.App.Views
 
         private async void Search(object sender, EventArgs e)
         {
+            TxtResultsCount.Text = String.Empty;
             Loading.IsVisible = true;
             Loading.IsRunning = true;
             NoResult.IsVisible = false;
@@ -84,6 +85,8 @@ namespace JobSearch.App.Views
                 // preenche a CollectionView com as instancias
                 ListOfJobs.ItemsSource = _listOfJobs;
                 ListOfJobs.RemainingItemsThreshold = 1;
+
+                TxtResultsCount.Text = $"{responseService.Pagination.TotalItems} resultado(s).";
             }
             else
             {
