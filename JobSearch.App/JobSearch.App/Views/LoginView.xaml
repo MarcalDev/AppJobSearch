@@ -6,11 +6,11 @@
              
              >
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <Label Text="Jobsearch" Style="{StaticResource Title}" />
             <BoxView Color="#D7CCFF" HeightRequest="1"/>
 
-            <Grid VerticalOptions="CenterAndExpand">
+            <Grid CompressedLayout.IsHeadless="True" VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -27,9 +27,9 @@
                 <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2">
                     <Entry IsPassword="True" x:Name="TxtPassword" ReturnType="Done" Placeholder="Senha" />
                 </Frame>
-                
-                <Button Text="Acessar" Clicked="GoStart" Grid.Row="2"/>
-                <Button Text="Cadastrar" Clicked="GoRegister" Grid.Row="2" Grid.Column="1"/>
+
+                <Button CompressedLayout.IsHeadless="False" Text="Acessar" Clicked="GoStart" Grid.Row="2"/>
+                <Button CompressedLayout.IsHeadless="False" Text="Cadastrar" Clicked="GoRegister" Grid.Row="2" Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

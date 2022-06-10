@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JobSearch.App.Views.RegisterJobView">
     <ContentPage.Content>
-        <StackLayout Spacing="10">
-            <Grid>
+        <StackLayout Spacing="10" CompressedLayout.IsHeadless="True">
+            <Grid CompressedLayout.IsHeadless="True">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition/>
@@ -20,7 +20,7 @@
 
             <BoxView Color="#D7CCFF" HeightRequest="1"/>
             <ScrollView>
-                <StackLayout>
+                <StackLayout CompressedLayout.IsHeadless="True">
 
                     <Label x:Name="TxtMessages" LineHeight="1.2" TextColor="OrangeRed"/>
 

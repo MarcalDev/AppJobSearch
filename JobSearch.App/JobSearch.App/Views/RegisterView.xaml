@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JobSearch.App.Views.RegisterView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"/>
